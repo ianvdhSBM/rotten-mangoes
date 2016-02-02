@@ -3,7 +3,7 @@ class Admin::UsersController < ApplicationController
   before_action :admin_restrict_access
 
   def index
-    @users = User.all
+    @users = User.all.page(params[:page]).per(5)
   end
 
   def new
