@@ -1,0 +1,9 @@
+<h1>Rotten Mangoes</h1>
+<%= link_to "Submit a movie!", new_movie_path %>
+<hr>
+
+<% @users.each do |user| %>
+  <p><%= user.id %>. <%= user.firstname %> <%= user.lastname %> (<%= user.email %>)</p>
+<% end %>
+
+<hr>
