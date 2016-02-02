@@ -2,9 +2,15 @@
 <%= link_to "Back to all users", admin_users_path %><br>
 <hr>
 
+<p>User ID: <%= @user.id %> </p>
+
 <p>First name: <%= @user.firstname %></p>
 <p>Last name: <%= @user.lastname %></p>
 <p>Email: <%= @user.email %></p>
 <p>Admin: <%= @user.admin %></p>
 <p>Created at: <%= @user.created_at %></p>
 <p>Created at: <%= @user.updated_at %></p>
+
+<br>
+
+<p>( <%= link_to "edit", edit_admin_user_path(@user) %> | <%= link_to "delete", admin_user_path(@user), method: :delete, prompt: "You sure?" %> )</p>

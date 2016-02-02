@@ -2,6 +2,8 @@
 <%= link_to "Back to Admin Dashboard (placeholder)" %>
 <hr>
 
+<p><%= link_to "Create new user", new_admin_user_path %></p>
+
 <% @users.each do |user| %>
   <p><%= user.id %>. <%= link_to "#{user.firstname} #{user.lastname}", admin_user_path(user) %> (<%= user.email %>)</p>
 <% end %>
