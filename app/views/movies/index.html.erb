@@ -10,7 +10,7 @@
   <%= label_tag(:director, "Director") %>
   <%= text_field_tag(:director) %>
 
-  <%= select_tag(:runtime_in_minutes, options_for_select([['Under 90 minutes', 0], ['Between 90 & 120 minutes', 1], ['Over 120 minutes', 2]])) %>
+  <%= select_tag(:runtime_in_minutes, options_for_select([['Duration', 0], ['Under 90 minutes', 1], ['Between 90 & 120 minutes', 2], ['Over 120 minutes', 3]])) %>
 
   <%= submit_tag("Search") %>
 
@@ -23,11 +23,5 @@
 <hr>
 
 <% @movies.each do |movie| %>
-  <%= link_to image_tag(movie.image.thumb.url), movie_path(movie) %>
-  <h2><%= link_to movie.title, movie_path(movie) %></h2>
-  <h3><%= formatted_date(movie.release_date) %></h3>
-  <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
-  <p>Average rating from users: <%= movie.review_average %>/10</p>
-  <p><%= movie.description %></p>
-  <hr>
+  <%= render partial: "movie", locals: { movie: movie } %>
 <% end %>
