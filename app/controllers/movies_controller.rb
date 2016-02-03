@@ -1,18 +1,16 @@
 class MoviesController < ApplicationController
 
   def index
-
-    if params[:title].blank? && params[:director].blank?
-      @movies = Movie.all
-    else
-      @movies = Movie.where(
-        "title LIKE ? OR director LIKE ?",
-        property_info(params[:title]),
-        property_info(params[:director])
-      )
-    end
-
-    # @movies = Movie.search(property_info(params[:title]), property_info(params[:director]))
+    @movies = Movie.search(params)
+    # if params[:title].blank? && params[:director].blank?
+    #   @movies = Movie.all
+    # else
+    #   @movies = Movie.where(
+    #     "title LIKE ? OR director LIKE ?",
+    #     property_info(params[:title]),
+    #     property_info(params[:director])
+    #   )
+    # end
   end
 
   def show
@@ -27,13 +25,13 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  def property_info(property)
-    if property.blank?
-      ''
-    else
-      "%#{property}%"
-    end
-  end
+  # def property_info(property)
+  #   if property.blank?
+  #     ''
+  #   else
+  #     "%#{property}%"
+  #   end
+  # end
 
   # def search
   #   # title = property_info(params[:title])

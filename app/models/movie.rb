@@ -40,12 +40,24 @@ class Movie < ActiveRecord::Base
     end
   end
 
-  # def self.search(title, director)
-  #   if search
-  #     find(:all, :conditions => ['title LIKE ? OR director LIKE ?', "#{title}", "#{director}"])
-  #   else
-  #     find(:all)
-  #   end
-  # end
+  def self.search(params)
+    if params[:title].blank? && params[:director].blank?
+      Movie.all
+    else
+      Movie.where(
+        "title LIKE ? OR director LIKE ?",
+        Movie.property_info(params[:title]),
+        Movie.property_info(params[:director])
+      )
+    end
+  end
+
+  def self.property_info(property)
+    if property.blank?
+      ''
+    else
+      "%#{property}%"
+    end
+  end
 
 end
