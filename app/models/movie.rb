@@ -14,9 +14,6 @@ class Movie < ActiveRecord::Base
   validates :description,
     presence: true
 
-  # validates :poster_image_url,
-  #   presence: true
-
   validates :release_date,
     presence: true
 
@@ -40,16 +37,29 @@ class Movie < ActiveRecord::Base
     end
   end
 
-  def self.search(params)
-    if params[:title].blank? && params[:director].blank?
-      Movie.all
-    else
-      Movie.where(
-        "title LIKE ? OR director LIKE ?",
-        Movie.property_info(params[:title]),
-        Movie.property_info(params[:director])
-      )
+  scope :search, ->(query) do
+    if query
+      where("title LIKE :search OR director LIKE :search", search: property_info(query))
     end
+  end
+
+  scope :runtime, ->(runtime) do
+    where(runtime_search(runtime))
+  end
+
+  def self.runtime_search(choice)
+    params = ""
+    case choice
+    when "0"
+      params = ""
+    when "1"
+      params = "runtime_in_minutes < 90"
+    when "2"
+      params = "runtime_in_minutes BETWEEN 90 AND 120"
+    when "3"
+      params = "runtime_in_minutes > 120"
+    end
+    params
   end
 
   def self.property_info(property)
