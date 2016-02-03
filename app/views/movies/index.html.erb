@@ -1,5 +1,6 @@
 <h1>Rotten Mangoes</h1>
-<%= link_to "Submit a movie!", new_movie_path %>
+<%= link_to "Submit a movie!", new_movie_path %>  |   <%= link_to "Admin users page", admin_users_path %>
+
 <hr>
 
 <%= form_tag("movies/search", method: "get") do %>

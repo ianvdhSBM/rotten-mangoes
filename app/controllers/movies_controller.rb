@@ -17,8 +17,8 @@ class MoviesController < ApplicationController
   end
 
   def search
-    title = property_info(params[:title])
-    director = property_info(params[:director])
+    # title = property_info(params[:title])
+    # director = property_info(params[:director])
 
     @movies = Movie.where("title LIKE ? OR director LIKE ?", property_info(params[:title]), property_info(params[:director]))
     # runtime = params[:runtime_in_minutes]
@@ -38,7 +38,7 @@ class MoviesController < ApplicationController
 
   def property_info(property)
     if property.empty?
-      ' '
+      ''
     else
       "%#{property}%"
     end
