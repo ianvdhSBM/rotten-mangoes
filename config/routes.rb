@@ -19,6 +19,8 @@ Rails.application.routes.draw do
 
   get 'movies/edit'
 
+  get 'movies/search'
+
   resources :movies do
     resources :reviews, only: [:new, :create]
   end

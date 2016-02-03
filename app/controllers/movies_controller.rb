@@ -16,6 +16,22 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
+  def search
+
+    @movies = Movie.where("title LIKE ? OR director LIKE ?", property_info(params[:title]), property_info(params[:director]))
+
+    # render '/movies/search'
+  end
+
+  def property_info(property)
+    if property.empty?
+      ''
+    else
+      "%#{property}%"
+    end
+
+  end
+
   def create
     @movie = Movie.new(movie_params)
 

@@ -2,11 +2,25 @@
 <%= link_to "Submit a movie!", new_movie_path %>
 <hr>
 
+<%= form_tag("movies/search", method: "get") do %>
+  <%= label_tag(:title, "Title") %>
+  <%= text_field_tag(:title) %>
+
+  <%= label_tag(:director, "Director") %>
+  <%= text_field_tag(:director) %>
+
+  <%= select_tag(:runtime_in_minutes, options_for_select([['Under 90 minutes', '< 90'], ['Between 90 & 120 minutes', 'BETWEEN 90 AND 120'], ['Over 120 minutes', '> 120']])) %>
+
+  <%= submit_tag("Search") %>
+<% end %>
+
+<hr>
+
 <% @movies.each do |movie| %>
   <%= link_to image_tag(movie.image.thumb.url), movie_path(movie) %>
   <h2><%= link_to movie.title, movie_path(movie) %></h2>
   <h3><%= formatted_date(movie.release_date) %></h3>
-  <h4>Dir. <%= movie.director %> | <%movie.runtime_in_minutes %> minutes</h4>
+  <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
   <p>Average rating from users: <%= movie.review_average %>/10</p>
   <p><%= movie.description %></p>
   <hr>

@@ -1,0 +1,16 @@
+<h1>Rotten Mangoes</h1>
+<h4><%= link_to "Back to all movies", movies_path %></h4>
+<hr>
+
+
+<hr>
+
+<% @movies.each do |movie| %>
+  <%= link_to image_tag(movie.image.thumb.url), movie_path(movie) %>
+  <h2><%= link_to movie.title, movie_path(movie) %></h2>
+  <h3><%= formatted_date(movie.release_date) %></h3>
+  <h4>Dir. <%= movie.director %> | <%= movie.runtime_in_minutes %> minutes</h4>
+  <p>Average rating from users: <%= movie.review_average %>/10</p>
+  <p><%= movie.description %></p>
+  <hr>
+<% end %>
