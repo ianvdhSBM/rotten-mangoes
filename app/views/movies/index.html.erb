@@ -9,7 +9,7 @@
   <%= label_tag(:director, "Director") %>
   <%= text_field_tag(:director) %>
 
-  <%= select_tag(:runtime_in_minutes, options_for_select([['Under 90 minutes', '< 90'], ['Between 90 & 120 minutes', 'BETWEEN 90 AND 120'], ['Over 120 minutes', '> 120']])) %>
+  <%= select_tag(:runtime_in_minutes, options_for_select([['Under 90 minutes', 0], ['Between 90 & 120 minutes', 1], ['Over 120 minutes', 2]])) %>
 
   <%= submit_tag("Search") %>
 <% end %>

@@ -35,6 +35,9 @@ gem 'rmagick'
 gem 'mini_magick', '~> 4.3'
 
 gem 'kaminari'
+
+gem 'pry-rails'
+
 # Use unicorn as the app server
 # gem 'unicorn'
 
