@@ -40,4 +40,12 @@ class Movie < ActiveRecord::Base
     end
   end
 
+  # def self.search(title, director)
+  #   if search
+  #     find(:all, :conditions => ['title LIKE ? OR director LIKE ?', "#{title}", "#{director}"])
+  #   else
+  #     find(:all)
+  #   end
+  # end
+
 end

@@ -1,9 +1,9 @@
 <h1>Rotten Mangoes</h1>
-<%= link_to "Submit a movie!", new_movie_path %>  |   <%= link_to "Admin users page", admin_users_path %>
+<%= link_to "Home", movies_path %>   |   <%= link_to "Submit a movie!", new_movie_path %>   |   <%= link_to "Admin users page", admin_users_path %>
 
 <hr>
 
-<%= form_tag("movies/search", method: "get") do %>
+<%= form_tag(movies_path, method: "get") do %>
   <%= label_tag(:title, "Title") %>
   <%= text_field_tag(:title) %>
 
@@ -13,6 +13,11 @@
   <%= select_tag(:runtime_in_minutes, options_for_select([['Under 90 minutes', 0], ['Between 90 & 120 minutes', 1], ['Over 120 minutes', 2]])) %>
 
   <%= submit_tag("Search") %>
+
+  <%= button_tag(type: 'button') do %>
+    <% link_to "Reset", movies_path %>
+  <% end %>
+
 <% end %>
 
 <hr>
