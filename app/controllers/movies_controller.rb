@@ -18,17 +18,6 @@ class MoviesController < ApplicationController
     @movie = Movie.find(params[:id])
   end
 
-  # runtime = params[:runtime_in_minutes]
-
-  # case runtime.to_i
-  # when 0
-  #   where_params = "(title LIKE #{title} OR director LIKE #{director}) AND runtime_in_minutes < 90"
-  # when 1
-  #   where_params = "(title LIKE #{title} OR director LIKE #{director}) AND runtime_in_minutes BETWEEN 90 AND 120"
-  # when 2
-  #   where_params = "(title LIKE #{title} OR director LIKE #{director}) AND runtime_in_minutes > 120"
-  # end
-
   def create
     @movie = Movie.new(movie_params)
 

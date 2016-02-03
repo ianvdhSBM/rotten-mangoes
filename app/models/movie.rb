@@ -38,9 +38,7 @@ class Movie < ActiveRecord::Base
   end
 
   scope :search, ->(query) do
-    if query
-      where("title LIKE :search OR director LIKE :search", search: property_info(query))
-    end
+    where("title LIKE :search OR director LIKE :search", search: property_info(query))
   end
 
   scope :runtime, ->(runtime) do

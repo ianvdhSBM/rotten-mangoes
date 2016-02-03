@@ -19,6 +19,11 @@
 
 <hr>
 
-<% @movies.each do |movie| %>
-  <%= render partial: "movie", locals: { movie: movie } %>
+<% if @movies.empty? %>
+  <h3>No movies found</h3>
+<% else%>
+  <% @movies.each do |movie| %>
+    <%= render partial: "movie", locals: { movie: movie } %>
+  <% end %>
 <% end %>
+
