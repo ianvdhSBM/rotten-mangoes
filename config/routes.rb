@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
   get 'sessions/create'
 
+  get 'users/show'
+
   get 'users/new'
 
   get 'users/create'
@@ -25,7 +27,7 @@ Rails.application.routes.draw do
     resources :reviews, only: [:new, :create]
   end
 
-  resources :users, only: [:new, :create]
+  resources :users, only: [:new, :create, :show]
   resource :sessions, only: [:new, :create, :destroy]
 
   root to: 'movies#index'
