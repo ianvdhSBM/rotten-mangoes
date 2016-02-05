@@ -1,5 +1,9 @@
 class Movie < ActiveRecord::Base
 
+  scope :search, ->(query) { where("title LIKE :search OR director LIKE :search", search: "%#{query}%") }
+
+  scope :runtime, ->(runtime) { where(runtime_search(runtime)) }
+
   has_many :reviews
 
   validates :title,
@@ -37,14 +41,6 @@ class Movie < ActiveRecord::Base
     end
   end
 
-  scope :search, ->(query) do
-    where("title LIKE :search OR director LIKE :search", search: property_info(query))
-  end
-
-  scope :runtime, ->(runtime) do
-    where(runtime_search(runtime))
-  end
-
   def self.runtime_search(choice)
     params = ""
     case choice
@@ -60,12 +56,15 @@ class Movie < ActiveRecord::Base
     params
   end
 
-  def self.property_info(property)
-    if property.blank?
-      ''
-    else
-      "%#{property}%"
-    end
-  end
+  # Used to check if params being passed from search is blank or not.
+  # If not blank, it would add wildcards.
+  # Decided to move .blank? to controller
+  # def self.property_info(property)
+  #   if property.blank?
+  #     ''
+  #   else
+  #     "%#{property}%"
+  #   end
+  # end
 
 end
