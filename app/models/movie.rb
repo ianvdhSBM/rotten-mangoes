@@ -1,8 +1,8 @@
 class Movie < ActiveRecord::Base
 
-  scope :search, ->(query) { where("title LIKE :search OR director LIKE :search", search: "%#{query}%") }
+  scope :search, -> (query) { where("title LIKE :search OR director LIKE :search", search: "%#{query}%") }
 
-  scope :runtime, ->(runtime) { where(runtime_search(runtime)) }
+  scope :runtime, -> (runtime) { where(runtime_search(runtime)) }
 
   has_many :reviews
 
@@ -42,18 +42,16 @@ class Movie < ActiveRecord::Base
   end
 
   def self.runtime_search(choice)
-    params = ""
     case choice
     when "0"
-      params = ""
+       ""
     when "1"
-      params = "runtime_in_minutes < 90"
+       "runtime_in_minutes < 90"
     when "2"
-      params = "runtime_in_minutes BETWEEN 90 AND 120"
+       "runtime_in_minutes BETWEEN 90 AND 120"
     when "3"
-      params = "runtime_in_minutes > 120"
+       "runtime_in_minutes > 120"
     end
-    params
   end
 
   # Used to check if params being passed from search is blank or not.
